@@ -280,6 +280,16 @@ ternary bersarang di JSX, inline style object panjang, satu file berisi 5 kompon
 - Dilarang UI library di atas Tailwind (shadcn, daisyUI, Material Tailwind).
 - Warna dan spacing pakai skala bawaan Tailwind, jangan nilai arbitrary seperti `w-[347px]`.
 
+## 6c.Desain token
+- Background halaman: `bg-[#F2F2EE]`
+- Card: `bg-white border-2 border-black` + outline biru tebal
+- Input: `border-2 border-black rounded-none` + `shadow-[3px_3px_0px_0px_black]`
+- Tombol utama: `bg-[#FF5C00] border-2 border-black font-bold uppercase tracking-wide`
+- Error: `bg-[#FBD5D5] border-2 border-black`, teks monospace-ish, prefix `SYS_ALERT:`
+- Label: `text-xs font-bold uppercase tracking-wider`
+- Heading: `font-bold text-4xl` (Helvetica/Inter)
+- Radius: `rounded-none` di semua elemen
+
 ---
 
 ## 7. Penamaan
