@@ -39,7 +39,7 @@ module.exports = {
       },
       minStock: {
         type: Sequelize.INTEGER,
-        defaultValue: 0
+        defaultValue: 10
       },
       isActive: {
         type: Sequelize.BOOLEAN,
@@ -48,13 +48,13 @@ module.exports = {
       },
       SupplierId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: "Suppliers",
           key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "CASCADE"
+        onDelete: "SET NULL"
       },
       createdAt: {
         allowNull: false,
