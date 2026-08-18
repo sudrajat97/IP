@@ -1,0 +1,23 @@
+[
+  {
+    "companyName": "PT Sumber Elektronik Jaya",
+    "contactPerson": "Budi Santoso",
+    "phone": "021-5550101",
+    "email": "sales@sumberelektronik.co.id",
+    "address": "Jl. Mangga Dua Raya No. 10, Jakarta"
+  },
+  {
+    "companyName": "CV Gadget Nusantara",
+    "contactPerson": "Siti Rahma",
+    "phone": "021-5550202",
+    "email": "order@gadgetnusantara.com",
+    "address": "Jl. Kebon Jeruk No. 25, Jakarta"
+  },
+  {
+    "companyName": "PT Perkakas Digital Indonesia",
+    "contactPerson": "Andi Wijaya",
+    "phone": "022-5550303",
+    "email": "cs@perkakasdigital.id",
+    "address": "Jl. Asia Afrika No. 5, Bandung"
+  }
+]
