@@ -7,9 +7,10 @@
 
 ## 1. Tujuan Project
 
-Aplikasi manajemen inventori untuk toko/gudang kecil-menengah. User bisa mengelola
-produk, memantau stok, mencatat pembelian (purchase) dan penjualan (sale), mengelola
-supplier, serta melihat laporan dan alert stok menipis.
+**RAKMAN** — aplikasi manajemen inventori untuk toko/gudang kecil-menengah.
+User bisa mengelola produk, memantau stok, mencatat pembelian (purchase)
+dan penjualan (sale), mengelola supplier, serta melihat laporan dan alert
+stok menipis.
 
 ## 2. Scope MVP (v1.0)
 
