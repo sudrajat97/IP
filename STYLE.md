@@ -279,6 +279,8 @@ ternary bersarang di JSX, inline style object panjang, satu file berisi 5 kompon
 - Maksimal ~8 utility class per elemen. Kalau lebih, ekstrak jadi komponen.
 - Dilarang UI library di atas Tailwind (shadcn, daisyUI, Material Tailwind).
 - Warna dan spacing pakai skala bawaan Tailwind, jangan nilai arbitrary seperti `w-[347px]`.
+- Warna dan spacing pakai skala bawaan Tailwind. Nilai arbitrary hanya
+  boleh untuk: hard shadow, warna brand, dan max-width container.
 
 ## 6c.Desain token
 - Background halaman: `bg-[#F2F2EE]`
