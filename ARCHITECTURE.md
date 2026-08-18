@@ -183,4 +183,7 @@ Payload JWT hanya berisi: `{ id, email, role }`. Tidak ada data lain.
 ## 7. Konvensi Frontend
 
 - Key localStorage: `rakman_token` (JWT), `rakman_user` (data user)
-- Semua request API lewat `client/src/services/api.js` (axios instance dengan interceptor)
+- Semua request API lewat `client/src/services/api.js` (axios instance
+  dengan interceptor yang menambahkan header Authorization)
+- Struktur folder: `pages/` (halaman per route), `components/` (komponen
+  reusable), `context/` (React Context), `services/` (API layer)
