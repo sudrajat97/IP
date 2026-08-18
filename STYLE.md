@@ -23,37 +23,67 @@
 
 ✅ **BEGINI** — class dengan static method, try/catch, lempar ke `next()`:
 ```js
-class ProductController {
-  static async findAll(req, res, next) {
-    try {
-      const { search, category, page = 1, limit = 10 } = req.query;
-
-      const options = { where: {}, limit: Number(limit) };
-      options.offset = (Number(page) - 1) * Number(limit);
-
-      if (search) {
-        options.where.name = { [Op.iLike]: `%${search}%` };
-      }
-      if (category) {
-        options.where.category = category;
-      }
-
-      const result = await Product.findAndCountAll(options);
-
-      res.status(200).json({
-        data: result.rows,
-        meta: {
-          page: Number(page),
-          limit: Number(limit),
-          totalItems: result.count,
-          totalPages: Math.ceil(result.count / Number(limit)),
-        },
-      });
-    } catch (error) {
-      next(error);
+class AuthController {
+    static async register(req, res, next) {
+        try {
+            const { email, password, role } = req.body
+            const user = await User.create({
+                email, password, role
+            })
+            res.status(201).json({
+                message: "Success create new User",
+                data: {
+                    id: user.id,
+                    email: user.email,
+                    role: user.role
+                }
+            })
+        } catch (error) {
+            next(error)
+        }
     }
-  }
+
+    static async login(req, res, next) {
+        try {
+            const { email, password } = req.body
+            if (!email || !password) {
+                throw { name: "BadRequest", message: "Please input email or password" }
+            }
+
+            const user = await User.findOne({
+                where: {
+                    email
+                }
+            })
+            if (!user) {
+                throw { name: "LoginError" }
+            }
+
+            const isValidPassword = comparePassword(password, user.password)
+            if (!isValidPassword) {
+                throw { name: "LoginError" }
+            }
+
+            const access_token = signToken({
+                id: user.id,
+                email: user.email,
+                role: user.role
+            })
+
+            res.status(200).json({
+                access_token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    role: user.role
+                }
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
+
 ```
 
 ❌ **JANGAN BEGINI** — arrow function anonim, chaining padat, error ditelan:
@@ -76,23 +106,44 @@ if (!product) {
 }
 
 // middlewares/errorHandler.js
-function errorHandler(error, req, res, next) {
-  console.error(error);
+const errorHandler = (error, req, res, next) => {
+    console.log(error);
+    let status = 500
+    let message = 'Internal Server Error'
+    if (error.name === 'SequelizeValidationError') {
+        status = 400
+        message = error.errors[0].message
+    }
+    if (error.name == 'SequelizeUniqueConstraintError') {
+        status = 400
+        message = error.errors[0].message
+    }
+    if (error.name == 'BadRequest') {
+        message = error.message || 'Please input email or password'
+        status = 400
+    }
+    if (error.name == 'LoginError') {
+        message = 'Invalid email or password'
+        status = 401
+    }
+    if (error.name == 'Unauthorized' || error.name == 'JsonWebTokenError') {
+        message = 'Please login first'
+        status = 401
+    }
 
-  if (error.name === 'SequelizeValidationError') {
-    return res.status(400).json({ message: error.errors[0].message });
-  }
-  if (error.name === 'NotFound') {
-    return res.status(404).json({ message: error.message });
-  }
-  if (error.name === 'BadRequest') {
-    return res.status(400).json({ message: error.message });
-  }
-  if (error.name === 'Unauthorized') {
-    return res.status(401).json({ message: error.message });
-  }
+    if (error.name == 'Forbidden') {
+        message = 'You dont have any access'
+        status = 403
+    }
 
-  res.status(500).json({ message: 'Internal server error' });
+    if (error.name == 'NotFound') {
+        status = 404
+        message = error.message || `Data not found`
+    }
+    res.status(status).json({
+        message
+    })
+
 }
 ```
 
