@@ -79,7 +79,7 @@ Yang **TIDAK MASUK** v1.0 (jangan dikerjakan sampai diminta):
 - Auth: `jsonwebtoken`, `bcryptjs`
 - Test: Jest + Supertest
 - Frontend: React 18 + Vite, React Router, Axios
-- Styling: Tailwind CSS
+- Styling: Tailwind CSS v4 (plugin @tailwindcss/vite, bukan PostCSS config)
 - State: React state + Context. **Bukan** Redux/Zustand/React Query di v1.
 
 
