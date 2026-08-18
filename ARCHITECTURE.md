@@ -180,3 +180,7 @@ Payload JWT hanya berisi: `{ id, email, role }`. Tidak ada data lain.
 6. Insert Sale + SaleItems dengan priceAtSale = product.sellingPrice
 7. Commit. Kalau ada error di langkah mana pun → rollback penuh
 ```
+## 7. Konvensi Frontend
+
+- Key localStorage: `rakman_token` (JWT), `rakman_user` (data user)
+- Semua request API lewat `client/src/services/api.js` (axios instance dengan interceptor)

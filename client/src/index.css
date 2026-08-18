@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", Helvetica, Arial, sans-serif;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
