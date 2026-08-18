@@ -13,6 +13,16 @@ Urutan wajib di awal setiap sesi:
 3. `STYLE.md` — gaya penulisan kode
 4. File yang akan diubah — **baca isinya, jangan menebak**
 
+## 0b. File referensi wajib
+
+Sebelum menulis controller, model, atau test baru, baca dan tiru struktur:
+- `server/controllers/AuthController.js` — pola controller
+- `server/models/user.js` — pola model (validate + hook)
+- `server/middlewares/errorHandler.js` — pola error handling
+- `server/__tests__/auth.test.js` — pola test
+
+Tiru strukturnya persis. Jangan pakai gaya lain meskipun terlihat lebih baik.
+
 ## 1. Anti-Halusinasi (aturan paling penting)
 
 - **Dilarang menebak isi file.** Selalu baca file dulu sebelum mengedit.
