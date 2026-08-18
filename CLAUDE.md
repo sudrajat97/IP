@@ -111,3 +111,4 @@ dianggap pelanggaran berat.
 - Semua secret (`JWT_SECRET`, kredensial DB) dari `.env`. **Dilarang hardcode.**
 - `.env` tidak pernah di-commit. Update `.env.example` kalau ada variabel baru.
 - Query selalu lewat Sequelize (parameterized). Dilarang string concat SQL.
+- Dilarang menghapus atau mengubah data di database development/production. Kalau ada konflik data saat seeding atau migrasi, laporkan dan berhenti — owner yang memutuskan.
