@@ -79,8 +79,9 @@ Yang **TIDAK MASUK** v1.0 (jangan dikerjakan sampai diminta):
 - Auth: `jsonwebtoken`, `bcryptjs`
 - Test: Jest + Supertest
 - Frontend: React 18 + Vite, React Router, Axios
-- Styling: CSS biasa / CSS Modules — **bukan** Tailwind, **bukan** UI library
+- Styling: Tailwind CSS
 - State: React state + Context. **Bukan** Redux/Zustand/React Query di v1.
+
 
 ## 7. Definition of Done (satu task dianggap selesai kalau...)
 

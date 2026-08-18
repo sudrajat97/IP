@@ -274,6 +274,11 @@ function ProductList() {
 
 ❌ **JANGAN BEGINI** — custom hook untuk hal sepele, komponen 300 baris,
 ternary bersarang di JSX, inline style object panjang, satu file berisi 5 komponen.
+## 6b. Tailwind
+
+- Maksimal ~8 utility class per elemen. Kalau lebih, ekstrak jadi komponen.
+- Dilarang UI library di atas Tailwind (shadcn, daisyUI, Material Tailwind).
+- Warna dan spacing pakai skala bawaan Tailwind, jangan nilai arbitrary seperti `w-[347px]`.
 
 ---
 
