@@ -135,8 +135,8 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 | POST | `/api/products` | admin, manager | | ✅ |
 | PUT | `/api/products/:id` | admin, manager | | ✅ |
 | DELETE | `/api/products/:id` | admin | soft delete | ✅ |
-| GET | `/api/suppliers` | admin, manager | | ⬜ |
-| POST | `/api/suppliers` | admin, manager | | ⬜ |
+| GET | `/api/suppliers` | admin, manager | | ✅ |
+| POST | `/api/suppliers` | admin, manager | | ✅ |
 | POST | `/api/purchases` | admin, manager | stok naik | ✅ |
 | POST | `/api/sales` | semua | stok turun | ✅ |
 | GET | `/api/sales` | admin, manager | | ⬜ |
@@ -154,6 +154,17 @@ Status: ✅ sudah diimplementasi · ⬜ belum ada di kode
 - `GET /api/products/categories` — belum diimplementasi. Sementara frontend
   menurunkan daftar kategori dari produk di halaman aktif, sehingga dropdown
   filter bisa tidak menampilkan semua kategori yang ada.
+
+### Catatan Supplier
+
+- `DELETE /api/suppliers/:id` menghitung SEMUA produk yang mereferensikan
+  supplier tersebut, termasuk yang `isActive: false` — supaya riwayat asal
+  barang tidak hilang saat supplier dihapus. Kalau masih ada produk yang
+  terhubung (aktif maupun nonaktif), request ditolak 400.
+- `GET /api/suppliers/:id`, `PUT /api/suppliers/:id`, `DELETE /api/suppliers/:id`
+  sudah diimplementasikan di kode (lihat `SupplierController.js`) tapi belum
+  punya baris sendiri di tabel di atas karena hanya kolom Status yang boleh
+  diubah agent untuk task ini — perlu ditambahkan manual oleh owner.
 
 ### Catatan Purchase
 
