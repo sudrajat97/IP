@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../context/useAuth'
 import api from '../services/api'
 
 const PAGE_LIMIT = 10
@@ -17,6 +18,8 @@ function Products() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const { user } = useAuth()
+  const canManageProducts = user?.role === 'admin' || user?.role === 'manager'
 
   useEffect(() => {
     let isCancelled = false
@@ -81,8 +84,20 @@ function Products() {
 
       <div className="my-6 border-t border-black" />
 
-      <h2 className="font-bold text-4xl">Products</h2>
-      <p className="mt-2 font-mono text-sm text-gray-500">{meta.totalItems} product(s) in inventory</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="font-bold text-4xl">Products</h2>
+          <p className="mt-2 font-mono text-sm text-gray-500">{meta.totalItems} product(s) in inventory</p>
+        </div>
+        {canManageProducts && (
+          <Link
+            to="/products/add"
+            className="border-2 border-black bg-[#FF5C00] px-4 py-3 font-bold uppercase tracking-wide shadow-[3px_3px_0px_0px_black]"
+          >
+            Add product
+          </Link>
+        )}
+      </div>
 
       <form onSubmit={handleSearch} className="mt-8 flex flex-wrap items-end gap-4">
         <div className="space-y-2">
@@ -145,12 +160,15 @@ function Products() {
                 <th className="border-b-2 border-black px-4 py-3">Quantity</th>
                 <th className="border-b-2 border-black px-4 py-3">Selling Price</th>
                 <th className="border-b-2 border-black px-4 py-3">Status</th>
+                {canManageProducts && (
+                  <th className="border-b-2 border-black px-4 py-3">Actions</th>
+                )}
               </tr>
             </thead>
             <tbody>
               {products.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="px-4 py-8 text-center text-sm text-gray-500">
+                  <td colSpan={canManageProducts ? 7 : 6} className="px-4 py-8 text-center text-sm text-gray-500">
                     No products found.
                   </td>
                 </tr>
@@ -175,6 +193,16 @@ function Products() {
                           </span>
                         )}
                       </td>
+                      {canManageProducts && (
+                        <td className="px-4 py-3">
+                          <Link
+                            to={`/products/${product.id}/edit`}
+                            className="inline-block border-2 border-black bg-white px-2 py-1 text-xs font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_black]"
+                          >
+                            Edit
+                          </Link>
+                        </td>
+                      )}
                     </tr>
                   )
                 })
