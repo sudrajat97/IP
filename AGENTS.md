@@ -20,7 +20,7 @@ Sebelum menulis controller, model, atau test baru, baca dan tiru struktur:
 - `server/models/user.js` — pola model (validate + hook)
 - `server/middlewares/errorHandler.js` — pola error handling
 - `server/__tests__/auth.test.js` — pola test
-
+Semua pesan error dan message di response API ditulis dalam bahasa Inggris.
 Tiru strukturnya persis. Jangan pakai gaya lain meskipun terlihat lebih baik.
 
 ## 1. Anti-Halusinasi (aturan paling penting)
@@ -51,8 +51,7 @@ Tiru strukturnya persis. Jangan pakai gaya lain meskipun terlihat lebih baik.
 ## 3. Ukuran Task
 
 - Satu task = satu GitHub Issue = satu branch = satu PR.
-- **Maksimal ~200 baris perubahan per PR.** Kalau lebih besar, pecah dulu dan
-  laporkan rencana pemecahannya.
+- - **Maksimal ~200 baris perubahan per PR**, tidak termasuk file test dan migration. Kalau lebih besar, pecah dulu dan laporkan rencana pemecahannya.
 - Untuk task non-trivial: kirim **rencana singkat dulu** (file apa yang diubah,
   fungsi apa yang dibuat), tunggu approval owner, baru menulis kode.
 

@@ -148,6 +148,11 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 - `GET /api/products` hanya menampilkan produk dengan `isActive: true`
 - `GET /api/products/:id` — produk `isActive: false` hanya terlihat oleh admin & manager; staff mendapat 404 (bukan 403, supaya keberadaan produk tidak bocor)
 
+### Catatan Purchase
+
+- Tabel `Purchases` belum ada di v1.0. `SupplierId` yang dikirim ke
+  `POST /api/purchases` tidak disimpan permanen — hanya dicatat sebagai
+  referensi teks di `StockMovement.note`.
 
 ### Contoh body POST /api/sales
 ```json
