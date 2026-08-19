@@ -5,6 +5,8 @@ function Dashboard() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
 
+  const canRecordPurchase = user?.role === 'admin' || user?.role === 'manager'
+
   function handleLogout() {
     logout()
     navigate('/login', { replace: true })
@@ -30,6 +32,14 @@ function Dashboard() {
         >
           Products
         </Link>
+        {canRecordPurchase && (
+          <Link
+            to="/purchases/new"
+            className="bg-white border-2 border-black px-4 py-2 font-bold uppercase tracking-wide shadow-[3px_3px_0px_0px_black]"
+          >
+            New purchase
+          </Link>
+        )}
         <button
           type="button"
           onClick={handleLogout}

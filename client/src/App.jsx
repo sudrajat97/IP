@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import ProductForm from './pages/ProductForm'
 import SalesNew from './pages/SalesNew'
+import PurchaseNew from './pages/PurchaseNew'
 
 function App() {
   return (
@@ -50,6 +51,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <SalesNew />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purchases/new"
+            element={
+              <ProtectedRoute>
+                <PurchaseNew />
               </ProtectedRoute>
             }
           />
