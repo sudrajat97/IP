@@ -143,6 +143,7 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 | GET | `/api/stock-movements/:productId` | admin, manager | riwayat stok |
 | GET | `/api/dashboard/summary` | admin, manager | angka-angka dashboard |
 
+
 ### Catatan visibilitas produk
 
 - `GET /api/products` hanya menampilkan produk dengan `isActive: true`
