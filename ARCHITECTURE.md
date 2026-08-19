@@ -126,29 +126,29 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 
 ## 4. Daftar Endpoint
 
-| Method | Path | Role | Keterangan |
-|---|---|---|---|
-| POST | `/api/auth/register` | publik | body: email, password, role |
-| POST | `/api/auth/login` | publik | return `{ access_token, user }` |
-| GET | `/api/products` | semua | query: `search`, `category`, `sort`, `page`, `limit`, `lowStock=true` |
-| GET | `/api/products/:id` | semua | |
-| POST | `/api/products` | admin, manager | |
-| PUT | `/api/products/:id` | admin, manager | `sku` diabaikan kalau dikirim |
-| DELETE | `/api/products/:id` | admin | soft delete |
-| GET | `/api/suppliers` | admin, manager | |
-| POST | `/api/suppliers` | admin, manager | |
-| POST | `/api/purchases` | admin, manager | body: `SupplierId`, `items[]` → stok naik |
-| POST | `/api/sales` | semua | body: `customerName`, `items[]` → stok turun |
-| GET | `/api/sales` | admin, manager | |
-| GET | `/api/stock-movements/:productId` | admin, manager | riwayat stok |
-| GET | `/api/dashboard/summary` | admin, manager | angka-angka dashboard |
-
+| Method | Path | Role | Keterangan | Status |
+|---|---|---|---|---|
+| POST | `/api/auth/register` | publik | body: email, password, role | ✅ |
+| POST | `/api/auth/login` | publik | return `{ access_token, user }` | ✅ |
+| GET | `/api/products` | semua | query: search, category, sort, page, limit | ✅ |
+| GET | `/api/products/:id` | semua | | ✅ |
+| POST | `/api/products` | admin, manager | | ✅ |
+| PUT | `/api/products/:id` | admin, manager | | ✅ |
+| DELETE | `/api/products/:id` | admin | soft delete | ✅ |
+| GET | `/api/suppliers` | admin, manager | | ⬜ |
+| POST | `/api/suppliers` | admin, manager | | ⬜ |
+| POST | `/api/purchases` | admin, manager | stok naik | ✅ |
+| POST | `/api/sales` | semua | stok turun | ✅ |
+| GET | `/api/sales` | admin, manager | | ⬜ |
+| GET | `/api/stock-movements/:productId` | admin, manager | | ⬜ |
+| GET | `/api/dashboard/summary` | admin, manager | | ⬜ |
+| GET | `/api/products/categories` | semua | | ⬜ |
+Status: ✅ sudah diimplementasi · ⬜ belum ada di kode
 
 ### Catatan visibilitas produk
 
 - `GET /api/products` hanya menampilkan produk dengan `isActive: true`
 - `GET /api/products/:id` — produk `isActive: false` hanya terlihat oleh admin & manager; staff mendapat 404 (bukan 403, supaya keberadaan produk tidak bocor).
-
 ### Catatan kategori
 
 - `GET /api/products/categories` — belum diimplementasi. Sementara frontend
