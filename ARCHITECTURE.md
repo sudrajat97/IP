@@ -147,7 +147,13 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 ### Catatan visibilitas produk
 
 - `GET /api/products` hanya menampilkan produk dengan `isActive: true`
-- `GET /api/products/:id` — produk `isActive: false` hanya terlihat oleh admin & manager; staff mendapat 404 (bukan 403, supaya keberadaan produk tidak bocor)
+- `GET /api/products/:id` — produk `isActive: false` hanya terlihat oleh admin & manager; staff mendapat 404 (bukan 403, supaya keberadaan produk tidak bocor).
+
+### Catatan kategori
+
+- `GET /api/products/categories` — belum diimplementasi. Sementara frontend
+  menurunkan daftar kategori dari produk di halaman aktif, sehingga dropdown
+  filter bisa tidak menampilkan semua kategori yang ada.
 
 ### Catatan Purchase
 
