@@ -141,7 +141,7 @@ Kode status yang dipakai: `200`, `201`, `400` (validasi/business rule), `401`
 | POST | `/api/sales` | semua | stok turun | ✅ |
 | GET | `/api/sales` | admin, manager | | ⬜ |
 | GET | `/api/stock-movements/:productId` | admin, manager | | ⬜ |
-| GET | `/api/dashboard/summary` | admin, manager | | ⬜ |
+| GET | `/api/dashboard/summary` | admin, manager | | ✅ |
 | GET | `/api/products/categories` | semua | | ⬜ |
 Status: ✅ sudah diimplementasi · ⬜ belum ada di kode
 
@@ -171,6 +171,26 @@ Status: ✅ sudah diimplementasi · ⬜ belum ada di kode
 - Tabel `Purchases` belum ada di v1.0. `SupplierId` yang dikirim ke
   `POST /api/purchases` tidak disimpan permanen — hanya dicatat sebagai
   referensi teks di `StockMovement.note`.
+
+### Contoh response GET /api/dashboard/summary
+```json
+{
+  "message": "Success get dashboard summary",
+  "data": {
+    "totalProducts": 42,
+    "totalCategories": 5,
+    "lowStockCount": 3,
+    "todaySalesCount": 7,
+    "todaySalesAmount": 540000,
+    "totalInventoryValue": 18250000
+  }
+}
+```
+Semua angka dihitung dari query agregasi database (`COUNT`/`SUM`/`DISTINCT`),
+bukan `findAll` lalu dijumlah di JavaScript. Hanya produk `isActive: true`
+yang dihitung. `lowStockCount` = produk dengan `quantity <= minStock`.
+`totalInventoryValue` = Σ(`quantity` × `purchasePrice`). `todaySales*`
+dihitung dari `Sales.createdAt` pada rentang hari ini (waktu server).
 
 ### Contoh body POST /api/sales
 ```json
